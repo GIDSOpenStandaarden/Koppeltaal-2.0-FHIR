@@ -71,8 +71,18 @@ The Makefile provides several targets to manage the build process. You can run t
 | `build-minimal` | Minimal server package | `docker run -e FHIR_EMAIL=... -e FHIR_PASSWORD=... -v ${PWD}:/src koppeltaal-builder build-minimal` |
 | `build-ig` | Build Implementation Guide only | `docker run -e FHIR_EMAIL=... -e FHIR_PASSWORD=... -v ${PWD}:/src koppeltaal-builder build-ig` |
 | `version` | Show current version | `docker run -v ${PWD}:/src koppeltaal-builder version` |
-| `publish` | Publish to Simplifier.net | `docker run -e FHIR_EMAIL=... -e FHIR_PASSWORD=... -v ${PWD}:/src koppeltaal-builder publish` |
+| `publish` | Publish package to Simplifier.net (see note below) | `docker run -e FHIR_EMAIL=... -e FHIR_PASSWORD=... -v ${PWD}:/src koppeltaal-builder publish` |
 | `help` | Display available targets | `docker run -v ${PWD}:/src koppeltaal-builder help` |
+
+#### Publishing to Simplifier.net
+
+The `publish` target uploads the full documentation package to Simplifier.net. Important notes:
+
+- **What it does**: Publishes the full package (`output/koppeltaalv2-{VERSION}.tgz`) to your Simplifier.net project
+- **What it doesn't do**: Does not update individual resources on the Simplifier.net project page
+- **Prerequisites**: 
+  - Valid Simplifier.net credentials (`FHIR_EMAIL` and `FHIR_PASSWORD` environment variables)
+  - Successfully built package (run `make build` first)
 
 ### Build Output
 
